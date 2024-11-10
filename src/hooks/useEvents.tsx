@@ -1,6 +1,7 @@
-import { FormValues } from '../components/utils/types'
+import { FormValues, EventId } from '../components/utils/types'
 import { useAppDispatch } from '../hooks/useAppDispatch'
 import { addEvent, deleteEvent } from '../redux/eventsSlice'
+import { v4 as uuidv4 } from 'uuid'
 
 export const useEvents = (closeModal: () => void) => {
     const dispatch = useAppDispatch()
@@ -23,7 +24,7 @@ export const useEvents = (closeModal: () => void) => {
 
         const newEvent = {
             ...values,
-            id: crypto.randomUUID(),
+            id: uuidv4() as EventId,
             fecha: utcDate.toISOString().split('T')[0],
         }
 
@@ -31,7 +32,7 @@ export const useEvents = (closeModal: () => void) => {
         closeModal()
     }
 
-    const removeEvent = (id: string) => {
+    const removeEvent = (id: EventId) => {
         dispatch(deleteEvent(id))
     }
 

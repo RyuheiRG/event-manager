@@ -3,13 +3,14 @@ import { useFormik } from 'formik'
 import { schema } from '../schemas/validateScheme'
 import { EventId, FormValues } from './utils/types'
 import { useEvents } from '../hooks/useEvents'
+import { v4 as uuidv4 } from 'uuid'
 
 export const ModalForm = ({ isOpen, closeModal }: {isOpen: boolean, closeModal: () => void }) => {
     const { submitForm } = useEvents(closeModal)
 
     const { handleSubmit, handleChange, errors, values, touched } = useFormik<FormValues>({
         initialValues: {
-            id: crypto.randomUUID() as EventId,
+            id: uuidv4() as EventId,
             nombre: '', 
             fecha: '', 
             hora: '',
