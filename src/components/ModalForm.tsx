@@ -1,7 +1,7 @@
 import { Box, Button, TextareaAutosize, TextField } from '@mui/material'
 import { useFormik } from 'formik'
 import { schema } from '../schemas/validateScheme'
-import { EventId, FormValues } from './utils/types'
+import { EventId, FormValues } from '../utils/types'
 import { useEvents } from '../hooks/useEvents'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -62,7 +62,7 @@ export const ModalForm = ({ isOpen, closeModal }: {isOpen: boolean, closeModal: 
         position: 'relative',
         gap: 2,
         maxWidth: '400px',
-        minWitdh: '200px',
+        minWidth: '200px',
         margin: '0 auto',
         padding: 3,
         backgroundColor: '#f9f9f9',
@@ -101,7 +101,7 @@ export const ModalForm = ({ isOpen, closeModal }: {isOpen: boolean, closeModal: 
                     label='Fecha del evento (AAAA-MM-DD)'
                     placeholder='AAAA-MM-DD'
                     onChange={handleChange}
-                    error={Boolean(errors.fecha)}
+                    error={touched.fecha && Boolean(errors.fecha)}
                     helperText={touched.fecha && errors.fecha}
                 />
                 <TextField
@@ -113,8 +113,8 @@ export const ModalForm = ({ isOpen, closeModal }: {isOpen: boolean, closeModal: 
                     label='Hora del evento (HH:MM)'
                     placeholder='HH:MM'
                     onChange={handleChange}
-                    error={Boolean(errors.hora)}
-                    helperText={errors.hora}
+                    error={touched.hora && Boolean(errors.hora)}
+                    helperText={touched.hora && errors.hora}
                 />
                 <Box 
                     component={TextareaAutosize} 
@@ -125,7 +125,7 @@ export const ModalForm = ({ isOpen, closeModal }: {isOpen: boolean, closeModal: 
                     onChange={handleChange}
                 />
                 {touched.descripcion && errors.descripcion && (
-                    <span style={{ color: 'red' }}>{errors.descripcion}</span>
+                    <span aria-live='assertive' style={{ color: 'red' }}>{errors.descripcion}</span>
                 )}
                 <Button 
                     sx={{ minWidth: '200px' }} 

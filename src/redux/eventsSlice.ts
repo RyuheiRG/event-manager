@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { FormValues } from "../components/utils/types"
+import { FormValues } from "../utils/types"
 
 interface EventsState {
     events: FormValues[]
-  }
+}
   
-  const initialState: EventsState = {
+const initialState: EventsState = {
     events: [],
 }  
 

@@ -16,7 +16,7 @@ export const Header = () => {
             Manejador de Eventos
         </Typography>
         <Typography color="textSecondary" variant="h6" component="h2" align="center">
-            Event Manager es una aplicación de gestión de eventos desarrollada en React con TypeScript. Permite a los usuarios agregar, ver y eliminar eventos con detalles como nombre, fecha, hora, ubicación y descripción, además de visualizar la ubicación en un mapa interactivo. 😎
+            Event Manager es una aplicación de gestión de eventos desarrollada en React con TypeScript. Permite a los usuarios agregar, ver y eliminar eventos con detalles como nombre, fecha, hora y descripción. 😎
         </Typography> 
       </Box>
     )

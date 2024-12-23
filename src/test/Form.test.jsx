@@ -25,16 +25,17 @@ describe('ModalForm', () => {
         )
 
         // Verificar que el formulario se haya renderizado
-        await waitFor(() => {
-            expect(screen.getByLabelText(/Nombre del evento/i)).toBeInTheDocument()
-            expect(screen.getByLabelText(/Fecha/i)).toBeInTheDocument()
-            expect(screen.getByLabelText(/Hora/i)).toBeInTheDocument()
-        })
+        const nameEvent = await screen.findByLabelText(/Nombre del evento/i)
+        expect(nameEvent).toBeInTheDocument()
+        const dateEvent = await screen.findByLabelText(/Fecha/i)
+        expect(dateEvent).toBeInTheDocument()
+        const hourEvent = await screen.findByLabelText(/Hora/i)
+        expect(hourEvent).toBeInTheDocument()
 
         // Rellenar el formulario con datos válidos
-        fireEvent.change(screen.getByLabelText(/Nombre del evento/i), { target: { value: 'Concierto de prueba' } })
-        fireEvent.change(screen.getByLabelText(/Fecha/i), { target: { value: '2025-12-30' } })
-        fireEvent.change(screen.getByLabelText(/Hora/i), { target: { value: '18:00' } })
+        fireEvent.change(nameEvent, { target: { value: 'Concierto de prueba' } })
+        fireEvent.change(dateEvent, { target: { value: '2025-12-30' } })
+        fireEvent.change(hourEvent, { target: { value: '18:00' } })
         fireEvent.change(screen.getByPlaceholderText('Descripción...'), { target: { value: 'Hola mundo' } })
 
         // Simular el envío del formulario

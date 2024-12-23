@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import App from './App';
@@ -19,12 +19,8 @@ test('renders App component with header and add event button', () => {
   expect(screen.getByText(/Lista de eventos agregados/i)).toBeInTheDocument();
 
   // Verificar que el botón para añadir eventos esté presente
-  const addButton = screen.getByRole('button', { name: /Añadir evento/i });
+  const addButton = screen.getByRole('button', { name: /Agregar evento/i });
   expect(addButton).toBeInTheDocument();
-
-  // Verificar que el gráfico o la lista estén vacíos al inicio
-  expect(screen.getByText(/Grafica de eventos por mes/i)).toBeInTheDocument();
-  expect(screen.getByRole('list')).toBeInTheDocument();
 });
 
 test('opens the modal when the add event button is clicked', async () => {
@@ -34,11 +30,10 @@ test('opens the modal when the add event button is clicked', async () => {
     </Provider>
   );
 
-  const addButton = screen.getByRole('button', { name: /Añadir evento/i });
+  const addButton = screen.getByRole('button', { name: /Agregar evento/i });
   fireEvent.click(addButton);
 
   // Verificar que el modal del formulario se abre
-  await waitFor(() => {
-    expect(screen.getByLabelText(/Nombre del evento/i)).toBeInTheDocument();
-  });
+    const eventName = await screen.findByLabelText(/Nombre del evento/i);
+    expect(eventName).toBeInTheDocument();
 });

@@ -12,7 +12,7 @@ export const AddEvent = ({ openModal }: {openModal: () => void}) => {
         <Typography variant="h5" component="h2" sx={{ textWrap: 'balance' }}>
             Agregar un nuevo evento aqui
         </Typography>
-        <IconButton onClick={() =>openModal()}>
+        <IconButton aria-label="Agregar evento" onClick={() =>openModal()}>
           <AddEventIcon />
         </IconButton>
       </Box>

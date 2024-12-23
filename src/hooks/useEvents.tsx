@@ -1,4 +1,4 @@
-import { FormValues, EventId } from '../components/utils/types'
+import { FormValues, EventId } from '../utils/types'
 import { useAppDispatch } from '../hooks/useAppDispatch'
 import { addEvent, deleteEvent } from '../redux/eventsSlice'
 import { v4 as uuidv4 } from 'uuid'
